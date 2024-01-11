@@ -7,7 +7,8 @@ import { Injectable } from '@angular/core';
 export class MasterService {
   constructor(private http: HttpClient){}
   // https://3acs-server.azurewebsites.net/
-  baseurl = "https://3acs-server.azurewebsites.net/api";
+  // http://20.219.200.11/api/getAllUsers
+  baseurl = "https://3amigos-server.azurewebsites.net/api";
 
   registerUser(data:any){
     return this.http.post(this.baseurl+'/addUser', data);
