@@ -1,32 +1,23 @@
-# Use the official Node.js image as the base image for building the Angular app
-FROM node:18.16.1 as builder
+# Dockerfile
 
-# Set the working directory
+# Stage 1: Build Angular app
+FROM node:18.16.1 as build
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy the entire application
 COPY . .
+RUN npm run build
 
-# Build the Angular app for production using --configuration
-RUN npm run build -- --configuration=production
+# Stage 2: Serve app with Nginx
+FROM nginx:latest
 
-# Use a smaller, production-ready image
-FROM nginx:alpine
+# Copy Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy the built app from the builder stage to the NGINX web server
-COPY --from=builder /app/dist/three-amigos /usr/share/nginx/html
+# Copy built Angular app
+COPY --from=build /app/dist/your-app /usr/share/nginx/html
 
-# NGINX configuration (optional)
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose port 80 for the NGINX web server
+# Expose port
 EXPOSE 80
-
-# Command to start NGINX
-CMD ["nginx", "-g", "daemon off;"]
