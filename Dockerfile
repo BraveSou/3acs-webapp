@@ -10,8 +10,9 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the entire application
-COPY . .
+# Copy only necessary files for the build
+COPY src ./src
+COPY angular.json ./
 
 # Build the Angular app for production using --configuration
 RUN npm run build -- --configuration=production
@@ -23,7 +24,7 @@ FROM nginx:alpine
 COPY --from=builder /app/dist/three-amigos /usr/share/nginx/html
 
 # NGINX configuration (optional)
-# COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 80 for the NGINX web server
 EXPOSE 80
