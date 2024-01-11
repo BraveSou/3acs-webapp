@@ -35,16 +35,3 @@ jobs:
         run: |
           docker build -t server3ac.azurecr.io/3ac-webapp-git-actions:latest .
           docker push server3ac.azurecr.io/3ac-webapp-git-actions:latest
-
-  deploy:
-    runs-on: ubuntu-latest
-
-    needs: build
-
-    steps:
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 3acs
-          images: 'server3ac.azurecr.io/3ac-webapp-git-actions:latest'
-          multi-container-config-type: 'compose'
