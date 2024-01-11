@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t server3ac/3ac-webapp-git-actions:latest .
+          docker build -t server3ac.azurecr.io/3ac-webapp-git-actions:latest .
           docker push server3ac.azurecr.io/3ac-webapp-git-actions:latest
 
   deploy:
