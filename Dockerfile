@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image for building the Angular app
-FROM node:18.16.1 as builder
+FROM node:16 as builder
 
 # Set the working directory
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --production
 
 # Copy the entire application
 COPY . .
@@ -22,8 +22,11 @@ FROM nginx:alpine
 # Copy the built app from the builder stage to the NGINX web server
 COPY --from=builder /app/dist/three-amigos /usr/share/nginx/html
 
+# Clean up unnecessary dependencies
+RUN rm -rf /usr/share/nginx/html/node_modules
+
 # NGINX configuration (optional)
-COPY nginx.conf /etc/nginx/nginx.conf
+# COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 80 for the NGINX web server
 EXPOSE 80
