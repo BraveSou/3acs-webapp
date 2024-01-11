@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --production
+RUN npm install
 
 # Copy the entire application
 COPY . .
@@ -21,9 +21,6 @@ FROM nginx:alpine
 
 # Copy the built app from the builder stage to the NGINX web server
 COPY --from=builder /app/dist/three-amigos /usr/share/nginx/html
-
-# Clean up unnecessary dependencies
-RUN rm -rf /usr/share/nginx/html/node_modules
 
 # NGINX configuration (optional)
 # COPY nginx.conf /etc/nginx/nginx.conf
