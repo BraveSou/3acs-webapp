@@ -50,7 +50,6 @@ export class DashboardComponent implements OnInit{
           this.userType = "Supplier Dashboard"
         }
         if(res.data.staff){
-          this.router.navigate(['dashboard/management'])
           this.userType = "Staff Dashboard"
         }
 

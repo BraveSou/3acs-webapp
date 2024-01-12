@@ -22,8 +22,8 @@
         <button *ngIf="!isStaff" (click)="onAddFundsDialog()" mat-menu-item >
           <mat-icon>account_balance_wallet</mat-icon> Add Funds
         </button>
-        <button *ngIf="isStaff" mat-menu-item >
-          <mat-icon>settings</mat-icon> User Management
+        <button *ngIf="isStaff" mat-menu-item routerLink="management">
+          <mat-icon>settings</mat-icon> Management
         </button>
         <button (click)="deleteUserAccount(userinfo._id)" mat-menu-item >
           <mat-icon>delete_outline</mat-icon> Delete Account
