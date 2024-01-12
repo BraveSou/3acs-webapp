@@ -1,3 +1,6 @@
+// this file is responsible for communicating with the server for sending and also receiving information
+
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -8,8 +11,9 @@ export class MasterService {
   constructor(private http: HttpClient){}
   // https://3acs-server.azurewebsites.net/
   // http://20.219.200.11/api/getAllUsers
-  baseurl = "https://3amigos-server.azurewebsites.net/api";
+  baseurl = "https://3amigos-server.azurewebsites.net/api";//https calls to the server container hosted on azure
 
+  // all the code below this point communicates with the sever container...these the routes to the various server requests
   registerUser(data:any){
     return this.http.post(this.baseurl+'/addUser', data);
   }

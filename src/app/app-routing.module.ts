@@ -1,3 +1,5 @@
+// this file is responsible for routing and also the display of the various components. also helps with navigation, the main routes are register and login and the dashboard. the rest are subroutes or children routes for dashboard
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MarketComponent } from './components/market/market.component';

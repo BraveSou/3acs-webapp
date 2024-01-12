@@ -1,3 +1,6 @@
+# this is the file responsible for creating an image and pushing it to a docker container in azure
+# this file creates the front end docker container which is from here referred to as the webapp or the front end
+
 # Dockerfile
 
 # Stage 1: Build Angular app

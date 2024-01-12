@@ -24,7 +24,7 @@ export class ProductDetailsComponent implements OnInit {
         this.productDetails = res.data
       }
     })
-    // get the user type
+    // get the user type...to help determine what dashboard to display...we use user id
     this.ms.getUserDetails(localStorage.getItem('3ac-uid')).subscribe((res:any)=>{
       if(res.success){
         this.userDetails = res.data
