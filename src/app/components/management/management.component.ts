@@ -12,16 +12,18 @@ export class ManagementComponent implements OnInit{
   usersList!:any;
   ordersList!: { [cartId: string]: { status: string, date: string, products: any[] } };
   productsList!:any;
+  noorders = false;
   constructor(private ms: MasterService){}
   // oninit
   ngOnInit(): void {
     this.ms.getAllOrders().subscribe(
       (response: any) => {
-        this.ordersList = response.data;
-      },
-      (error: any) => {
-        console.error('Error fetching grouped cart items:', error);
-      }
+        if(response.success){
+          this.ordersList = response.data;
+        }else{
+          this.noorders = true;
+        }
+      }    
     );
     this.ms.getAllUsers().subscribe((res:any)=>{
       if(res.success){

@@ -13,7 +13,7 @@
 
         </table>
     </div>
-    <div *ngIf="!ordersList" class="orderslist">
+    <div *ngIf="!ordersList && noorders==false" class="orderslist">
         <mat-spinner strokeWidth="1" diameter="50"></mat-spinner>
     </div>
     <div *ngIf="ordersList" class="orderslist">
